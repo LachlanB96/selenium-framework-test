@@ -26,13 +26,22 @@ public class HelloSelenium {
         DressesPage dressesPage = new DressesPage();
         dressesPage.getAllDresses(driver);
         List<WebElement> dresses = dressesPage.getAllDresses(driver);
+        WebElement bestDiscountedDress = null;
+        double bestDiscount = 0.0;
+        double dressDiscount;
         for (WebElement dress : dresses){
-            System.out.println(dress.getText());
             Boolean hasDiscount = dress.findElements(By.className("price-percent-reduction")).size() > 0;
             if(hasDiscount) {
-                //String discount = dress.findElement(By.className("price-box")).getText();
-                System.out.println(dress.toString());
+                String[] lines = dress.getText().split("\\n");
+                String[] priceLine = lines[1].split(" ");
+                dressDiscount = Double.parseDouble(priceLine[2].substring(0, priceLine[2].length() - 1));
+                if(dressDiscount < bestDiscount){
+                    bestDiscount = dressDiscount;
+                    bestDiscountedDress = dress;
+                }
             }
         }
+        System.out.println(bestDiscountedDress.getText());
+        bestDiscountedDress.click();
     }
 }
