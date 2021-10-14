@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.*;
 
 import sample.homepage.HomePage;
+import sample.dressesPage.*;
 
 public class HelloSelenium {
 
@@ -30,8 +31,9 @@ public class HelloSelenium {
             //How do I define a page when I have multiple pages?
             HomePage homePage = new HomePage();
             homePage.clickDressesButton(driver);
-
-            List<WebElement> dre
+            DressesPage dressesPage = new DressesPage();
+            dressesPage.getAllDresses(driver);
+            //List<WebElement> dre
         }
     }
 
