@@ -21,8 +21,11 @@ public class HelloSelenium {
 
         driver = new ChromeDriver();
 
+        //Create an instance of homepage which calls the get() function on our driver
         HomePage homePage = new HomePage();
+        //On the homepage we want to click the button to shop for our dresses
         homePage.clickDressesButton(driver);
+        //Once we're on the
         DressesPage dressesPage = new DressesPage();
         dressesPage.getAllDresses(driver);
         List<WebElement> dresses = dressesPage.getAllDresses(driver);
