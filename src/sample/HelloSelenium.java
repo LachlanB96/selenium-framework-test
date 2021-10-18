@@ -3,23 +3,21 @@ package sample;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.*;
 
-import sample.homepage.HomePage;
-import sample.dressesPage.*;
+import sample.exceptions.DriverLocationException;
+import sample.pages.automationPractice.homepage.HomePage;
+import sample.pages.automationPractice.dressesPage.*;
 
 
 public class HelloSelenium {
 
     static WebDriver driver;
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws DriverLocationException {
 
-        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
-
-        driver = new ChromeDriver();
+        TestDriver driver = new TestDriver();
 
         //Create an instance of homepage which calls the get() function on our driver
         HomePage homePage = new HomePage();

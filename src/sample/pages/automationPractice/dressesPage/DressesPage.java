@@ -1,9 +1,9 @@
-package sample.dressesPage;
+package sample.pages.automationPractice.dressesPage;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import sample.Page;
+import sample.TestDriver;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ public class DressesPage extends Page {
 
 
 
-    public List<WebElement> getAllDresses(WebDriver driver) {
+    public List<WebElement> getAllDresses(TestDriver driver) {
         return driver.findElements(DressesPageObjects.dresses);
     }
 
-    public List<Dress> getAllDressObjects(WebDriver driver){
+    public List<Dress> getAllDressObjects(TestDriver driver){
         List<WebElement> dressWebElements = driver.findElements(DressesPageObjects.dresses);
         List<Dress> dresses = null;
         for (WebElement dressWebElement : dressWebElements){

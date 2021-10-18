@@ -1,4 +1,4 @@
-package sample.homepage;
+package sample.pages.automationPractice.homepage;
 
 import org.openqa.selenium.By;
 
