@@ -1,7 +1,5 @@
 package sample;
 
-import org.openqa.selenium.WebElement;
-
 import java.util.*;
 
 import sample.exceptions.DriverLocationException;
@@ -20,26 +18,26 @@ public class HelloSelenium {
         HomePage homePage = new HomePage();
         //On the homepage we want to click the button to shop for our dresses
         homePage.clickDressesButton(driver);
-        //Once we're on the
         DressesPage dressesPage = new DressesPage();
         dressesPage.getAllDresses(driver);
-        List<WebElement> dresses = dressesPage.getAllDresses(driver);
-        WebElement bestDiscountedDress = null;
+        List<DressesPage.Product> products = dressesPage.getAllDressObjects(driver);
+        DressesPage.Product bestDiscountedProduct = null;
         double bestDiscount = 0.0;
         double dressDiscount;
-        for (WebElement dress : dresses){
-            Boolean hasDiscount = dress.findElements(DressesPageObjects.discountInformation).size() > 0;
-            if(hasDiscount) {
-                String[] lines = dress.getText().split("\\n");
-                String[] priceLine = lines[1].split(" ");
-                dressDiscount = Double.parseDouble(priceLine[2].substring(0, priceLine[2].length() - 1));
-                if(dressDiscount < bestDiscount){
-                    bestDiscount = dressDiscount;
-                    bestDiscountedDress = dress;
-                }
-            }
+        for (DressesPage.Product product : products){
+            product.getDiscount();
+//            Boolean hasDiscount = product.findElements(DressesPageObjects.discountInformation).size() > 0;
+//            if(hasDiscount) {
+//                String[] lines = product.getText().split("\\n");
+//                String[] priceLine = lines[1].split(" ");
+//                dressDiscount = Double.parseDouble(priceLine[2].substring(0, priceLine[2].length() - 1));
+//                if(dressDiscount < bestDiscount){
+//                    bestDiscount = dressDiscount;
+//                    bestDiscountedProduct = product;
+//                }
+//            }
         }
-        System.out.println(bestDiscountedDress.getText());
-        bestDiscountedDress.click();
+        System.out.println(bestDiscountedProduct.getName());
+        //bestDiscountedProduct.click();
     }
 }
