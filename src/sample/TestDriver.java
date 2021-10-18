@@ -12,8 +12,13 @@ public class TestDriver {
 
     private static WebDriver driver;
 
-    TestDriver() throws DriverLocationException {
-        importDriver();
+    TestDriver() {
+        try {
+            importDriver();
+        }
+        catch (Exception e) {
+            System.out.println("Import Failed");
+        }
         this.driver = new ChromeDriver();
     }
 
@@ -29,13 +34,15 @@ public class TestDriver {
         return driver.findElements(locator);
     }
 
-    private static void importDriver() throws DriverLocationException {
+    static void importDriver() throws DriverLocationException {
         try {
-            System.setProperty("webdriver.chrome.driver", "./chromedriverr.exe");
+            System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         }
-        catch (IllegalStateException e) {
+        catch (Exception e) { //IllegalStateException ?
             System.out.println("Can not locate chrome driver. Illegal State Exception.");
             throw new DriverLocationException("Chrome Driver not found");
+        } finally {
+            System.out.println("Test");
         }
     }
 

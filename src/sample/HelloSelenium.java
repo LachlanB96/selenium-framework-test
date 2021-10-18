@@ -1,7 +1,5 @@
 package sample;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.*;
@@ -13,7 +11,6 @@ import sample.pages.automationPractice.dressesPage.*;
 
 public class HelloSelenium {
 
-    static WebDriver driver;
 
     public static void main(String[] args) throws DriverLocationException {
 
@@ -31,7 +28,7 @@ public class HelloSelenium {
         double bestDiscount = 0.0;
         double dressDiscount;
         for (WebElement dress : dresses){
-            Boolean hasDiscount = dress.findElements(By.className("price-percent-reduction")).size() > 0;
+            Boolean hasDiscount = dress.findElements(DressesPageObjects.discountInformation).size() > 0;
             if(hasDiscount) {
                 String[] lines = dress.getText().split("\\n");
                 String[] priceLine = lines[1].split(" ");
